@@ -1,0 +1,2 @@
+# cortx-scripts
+Misc scripts
