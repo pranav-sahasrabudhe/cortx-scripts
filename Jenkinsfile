@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Deploy') {
             steps {
-                echo 'Building..'
+                echo 'Deploying...'
+                echo "Deploying Ceph Node Pre-reqs on: ${params.HOST}"
             }
         }
         stage('Test') {
@@ -12,10 +13,6 @@ pipeline {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+        
     }
 }
