@@ -11,8 +11,8 @@ pipeline {
             steps {
                 echo 'Deploying...'
                 echo "Deploying Ceph Node Pre-reqs on: $TEST_HOST"
-                 sh '''#!/usr/bin/env bash
-                ssh $TEST_USER@$TEST_HOST -pw $TEST_PASS cat /root/test_jenkins
+                sh '''#!/usr/bin/env bash
+                sshpass -p $TEST_PASS ssh $TEST_USER@$TEST_HOST cat /root/test_jenkins
                 '''
             }
         }
