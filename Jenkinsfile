@@ -12,7 +12,7 @@ pipeline {
                 echo 'Deploying...'
                 echo "Deploying Ceph Node Pre-reqs on: $TEST_HOST"
                 sh '''#!/usr/bin/env bash
-                sshpass -p $TEST_PASS ssh $TEST_USER@$TEST_HOST cat /root/test_jenkins -o StrictHostKeyChecking=no
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins 
                 '''
             }
         }
