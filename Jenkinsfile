@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-    TEST_HOST = ${params.HOST}
-        TEST_USER = ${params.USER_NAME}
-        TEST_PASS = ${params.USER_PASS}
+        TEST_HOST = "${params.HOST}"
+        TEST_USER = "${params.USER_NAME}"
+        TEST_PASS = "${params.USER_PASS}"
     }
 
     stages {
