@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -x
-rm -rf ~/cortx-scripts
 
 #
 systemctl stop autofs.service puppet.service
