@@ -26,7 +26,7 @@ pipeline {
                 // chapsswd for default Ubuntu user
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST echo "ubuntu:seagate1" | sudo chpasswd
                 // Run perl command for fstab attrib
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST 'perl -pe 'if \(m{^\([^#]\\S*\\s+/\\s+\\S+\\s+)\(\\S+)\(\\s+.*)$}) { $_="$1$2,user_xattr$3\\n" unless $2=~m{\(^|,)user_xattr\(,|$)}; }' -i.bak /etc/fstab'
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST 'perl -pe 'if (m{^([^#]\\S*\\s+/\\s+\\S+\\s+)(\\S+)\(\\s+.*)$}) { $_="$1$2,user_xattr$3\\n" unless $2=~m{(^|,)user_xattr(,|$)}; }' -i.bak /etc/fstab'
                 '''
             }
         }
