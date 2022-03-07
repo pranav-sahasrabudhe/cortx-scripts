@@ -12,13 +12,23 @@ pipeline {
                 echo 'Deploying...'
                 echo "Deploying Ceph Node Pre-reqs on: $TEST_HOST"
                 sh '''#!/usr/bin/env bash
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins 
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
+                // Stop Autofs and Puppet
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOSTsystemctl stop autofs.service puppet.service
+                // Stop Autofs and Puppet
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOSTsystemctl disable autofs.service puppet.service
                 '''
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Verifying...'
+                echo "Verifying Ceph Node Pre-reqs on: $TEST_HOST"
+                sh '''#!/usr/bin/env bash
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
+                // Testing if services are stopped
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOSTsystemctl status autofs.service puppet.service
+                '''
             }
         }
         
