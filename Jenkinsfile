@@ -33,11 +33,10 @@ pipeline {
                 // # change rawstats* to raw*
                 // # If the node has rebooted need to run the
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST systemctl reload apparmor
-
                 '''
             }
         }
-        stage('Test') {
+        stage('Verify') {
             steps {
                 echo 'Verifying...'
                 echo "Verifying Ceph Node Pre-reqs on: $TEST_HOST"
