@@ -12,6 +12,7 @@ pipeline {
                 echo 'Deploying...'
                 echo "Deploying Ceph Node Pre-reqs on: $TEST_HOST"
                 sh '''#!/usr/bin/env bash
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST rm -rf ~/cortx-scripts
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST git clone https://github.com/pranav-sahasrabudhe/cortx-scripts
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST bash ~/cortx-scripts/prereq.sh
                 '''
