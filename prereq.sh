@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -x
-cat /root/test_jenkins
+rm -rf ~/cortx-scripts
 
 #
 systemctl stop autofs.service puppet.service
