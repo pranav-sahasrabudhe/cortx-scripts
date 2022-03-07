@@ -33,6 +33,7 @@ pipeline {
                 // # change rawstats* to raw*
                 // # If the node has rebooted need to run the
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST systemctl reload apparmor
+
                 '''
             }
         }
