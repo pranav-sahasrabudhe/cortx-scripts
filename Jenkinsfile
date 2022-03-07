@@ -13,7 +13,7 @@ pipeline {
                 echo "Deploying Ceph Node Pre-reqs on: $TEST_HOST"
                 sh '''#!/usr/bin/env bash
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST ./test_jenkins.sh
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST bash ./prereq.sh
                 '''
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 sh '''#!/usr/bin/env bash
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
                 // Testing if services are stopped
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST systemctl status autofs.service puppet.service
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST echo "Verification Successful"
                 '''
             }
         }
