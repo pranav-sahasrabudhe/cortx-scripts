@@ -6,10 +6,24 @@ cat /root/test_jenkins
 systemctl stop autofs.service puppet.service
 systemctl disable autofs.service puppet.service
 
-#sudo adduser teuthology --gecos "Teuthology,1,2,3" --disabled-password
+if id "teuthology" &>/dev/null; then
+    echo 'user found'
+else
+    echo 'user not found... creating...'
+    sudo adduser teuthology --gecos "Teuthology,1,2,3" --disabled-password
+fi
+
 echo "teuthology:seagate1" | sudo chpasswd
-#sudo adduser teuthworker --gecos "Teuthworker,4,5,6" --disabled-password
+
+if id "teuthworker" &>/dev/null; then
+    echo 'user found'
+else
+    echo 'user not found... creating...'
+    sudo adduser teuthworker --gecos "Teuthworker,4,5,6" --disabled-password
+fi
+#
 echo "teuthworker:seagate1" | sudo chpasswd
+
 echo "ubuntu:seagate1" | sudo chpasswd
 
 # Run perl command for fstab attrib
