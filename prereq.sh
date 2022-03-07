@@ -26,7 +26,7 @@ echo "teuthworker:seagate1" | sudo chpasswd
 echo "ubuntu:seagate1" | sudo chpasswd
 
 # Run perl command for fstab attrib
-perl -pe 'if (m{^([^#]\\S*\\s+/\\s+\\S+\\s+)(\\S+)(\\s+.*)$}) { $_="$1$2,user_xattr$3\n" unless $2=~m{(^|,)user_xattr(,|$)}; }' -i.bak /etc/fstab
+perl -pe 'if (m{^([^#]\S*\s+/\s+\S+\s+)(\S+)(\s+.*)$}) { $_="$1$2,user_xattr$3\n" unless $2=~m{(^|,)user_xattr(,|$)}; }' -i.bak /etc/fstab
 # Install ntp on Ubuntu so that we can sync manually. This is needed for apt-get repo getting 'not valid yet' error
 sudo apt install ntpdate -y
 
