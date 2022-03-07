@@ -24,7 +24,8 @@ pipeline {
                 echo 'Verifying...'
                 echo "Verifying Ceph Node Pre-reqs on: $TEST_HOST"
                 sh '''#!/usr/bin/env bash
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST ls -ltr /home
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST ntpdate ntp.seagate.com
                 // Testing if services are stopped
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST echo "Verification Successful"
                 '''
