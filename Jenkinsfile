@@ -14,9 +14,9 @@ pipeline {
                 sh '''#!/usr/bin/env bash
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
                 // Stop Autofs and Puppet
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOSTsystemctl stop autofs.service puppet.service
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST systemctl stop autofs.service puppet.service
                 // Stop Autofs and Puppet
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOSTsystemctl disable autofs.service puppet.service
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST systemctl disable autofs.service puppet.service
                 '''
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                 sh '''#!/usr/bin/env bash
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /root/test_jenkins
                 // Testing if services are stopped
-                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOSTsystemctl status autofs.service puppet.service
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST systemctl status autofs.service puppet.service
                 '''
             }
         }
