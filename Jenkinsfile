@@ -26,6 +26,7 @@ pipeline {
                 sh '''#!/usr/bin/env bash
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST ls -ltr /home
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST ntpdate ntp.seagate.com
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST cat /etc/fstab
                 // Testing if services are stopped
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST echo "Verification Successful"
                 '''
