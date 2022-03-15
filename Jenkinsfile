@@ -4,6 +4,9 @@ pipeline {
         TEST_HOST = "${params.HOST}"
         TEST_USER = "${params.USER_NAME}"
         TEST_PASS = "${params.USER_PASS}"
+        PADDLES_HOST = "ssc-vm-g3-rhev4-2930.colo.seagate.com"
+        PADDLES_USER = "root"
+        PADDLES_PASS = "seagate1"
     }
 
     stages {
@@ -15,6 +18,8 @@ pipeline {
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST rm -rf ~/cortx-scripts
                 echo "Git clone dir removed..."
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST git clone https://github.com/pranav-sahasrabudhe/cortx-scripts
+                sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST bash ~/cortx-scripts/prereq.sh
+                
                 sshpass -p $TEST_PASS ssh -o StrictHostKeyChecking=no $TEST_USER@$TEST_HOST bash ~/cortx-scripts/prereq.sh
                 '''
             }
