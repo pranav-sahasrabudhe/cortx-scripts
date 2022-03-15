@@ -32,5 +32,23 @@ sudo apt install ntpdate -y
 
 # Ntpd permissions issue: # vim /etc/apparmor.d/usr.sbin.ntpd --> Will need sed/awk etc.
 # change rawstats* to raw*
+# Make ntpd rawstats*  to raw* changes
+sed -i 's/rawstats/raw/g' /etc/apparmor.d/usr.sbin.ntpd
+
 # If the node has rebooted need to run the
 systemctl reload apparmor
+
+snap remove --purge bare
+snap remove --purge core18
+snap remove --purge core20
+snap remove --purge gnome-3-34-1804
+snap remove --purge gnome-3-38-2004
+snap remove --purge gnome-system-monitor
+snap remove --purge gtk-common-themes
+snap remove --purge snap-store
+rm -rf /var/cache/snapd/
+snap list
+apt autoremove --purge snapd gnome-software-plugin-snap -y
+rm -rf ~/snap/
+apt-mark hold snapd
+
